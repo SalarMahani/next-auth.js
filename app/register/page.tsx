@@ -24,8 +24,7 @@ function Page() {
       {form.formState.isSubmitSuccessful ? (
         <LoginAnnouncementCard />
       ) : (
-        // <LoginForm form={form} />
-        <LoginAnnouncementCard />
+        <LoginForm form={form} />
       )}
     </main>
   )
