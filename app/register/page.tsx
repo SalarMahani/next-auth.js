@@ -1,10 +1,12 @@
 'use client'
-import { Card } from '@/components/ui/card'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as React from 'react'
-import LoginForm, { formSchema, formType } from '@/app/components/LoginForm'
+import RegisterForm, {
+  formSchema,
+  formType,
+} from '@/app/components/RegisterForm'
 import LoginAnnouncementCard from '@/app/components/LoginAnnouncementCard'
 
 function Page() {
@@ -24,7 +26,7 @@ function Page() {
       {form.formState.isSubmitSuccessful ? (
         <LoginAnnouncementCard />
       ) : (
-        <LoginForm form={form} />
+        <RegisterForm form={form} />
       )}
     </main>
   )

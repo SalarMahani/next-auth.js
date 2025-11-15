@@ -1,11 +1,12 @@
 'use server'
 
-import z, { unknown } from 'zod'
+import z from 'zod'
 import { passwordSchema } from '@/app/validation/passwordSchema'
 import { hash } from 'bcryptjs'
 import { db } from '@/db/db'
 import { users } from '@/db/AllSchemas'
 import { eq } from 'drizzle-orm'
+
 export async function registerUser({
   email,
   password,
@@ -37,7 +38,7 @@ export async function registerUser({
       .select()
       .from(users)
       .where(eq(users.email, email))
-    console.log('user exists', userExist)
+    // console.log('user exists', userExist)
     if (userExist.length) {
       return {
         error: true,
@@ -45,9 +46,7 @@ export async function registerUser({
       }
     }
     // console.log('new User Validation', newUserValidation)
-    // return {
-    //   error: false,
-    // }
+
     const hashPassword = await hash(password, 10)
     await db.insert(users).values({
       email: email,
@@ -57,8 +56,7 @@ export async function registerUser({
   } catch (e) {
     return {
       error: true,
-      massage: 'An error occurred.',
-      e,
+      massage: `An error occurred while registering. ${e}`,
     }
   }
 }
