@@ -19,7 +19,7 @@ export default function Home() {
           ' text-center text-gray-300' +
           ' text-2xl hover:bg-gray-300 hover:text-gray-800'
         }
-        href={'login'}
+        href={'/login'}
       >
         login
       </Link>

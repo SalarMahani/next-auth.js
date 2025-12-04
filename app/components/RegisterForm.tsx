@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { z } from 'zod'
 import { Controller, UseFormReturn } from 'react-hook-form'
 import {
   Field,
@@ -20,24 +19,21 @@ import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
-import { passwordSchema } from '@/app/validation/passwordSchema'
 import { registerUser } from '@/app/register/actions'
+import { newUserSchemaType } from '@/app/validation/newUserSchema'
 
-export const formSchema = z
-  .object({
-    email: z.email(),
-  })
-  .and(passwordSchema)
-export type formType = z.infer<typeof formSchema>
-
-function RegisterForm({ form }: { form: UseFormReturn<formType> }) {
+export default function RegisterForm({
+  form,
+}: {
+  form: UseFormReturn<newUserSchemaType>
+}) {
+  //since i know you forgot what this state is all about=> these two state are about implementing
+  // hidden,show password mechanism
   const [password, setPassword] = useState(false)
   const [passwordConfirm, setPasswordConfirm] = useState(false)
 
-  type formData = z.infer<typeof formSchema>
-
   const { errors } = form.formState
-  const handleSubmit = async (data: formData): Promise<void> => {
+  const handleSubmit = async (data: newUserSchemaType): Promise<void> => {
     const response = await registerUser({
       email: data.email,
       password: data.password,
@@ -49,7 +45,7 @@ function RegisterForm({ form }: { form: UseFormReturn<formType> }) {
         message: response?.message,
       })
     }
-    console.log('this is my data:', data, response)
+    // console.log('this is my data:', data, response)
   }
 
   return (
@@ -179,5 +175,3 @@ function RegisterForm({ form }: { form: UseFormReturn<formType> }) {
     </Card>
   )
 }
-
-export default RegisterForm

@@ -35,19 +35,15 @@ function Page() {
       password: '',
     },
   })
+  // dont panic we use this state for hidden/show input password.
   const [password, setPassword] = useState(false)
 
-  type formData = z.infer<typeof existedUserSchema>
   const { errors } = form.formState
-
-  const handleSubmit = async (data: formData): Promise<void> => {
+  const handleSubmit = async (data: existedUserSchemaType): Promise<void> => {
     const response = await loginUser({
       email: data.email,
       password: data.password,
     })
-    // if (response?.error) {
-    //
-    // }
     if (response?.problem && response?.problem) {
       form.setError('password', {
         message: response?.message,
@@ -57,7 +53,7 @@ function Page() {
         message: response?.message,
       })
     }
-    console.log('this is my data:', data, response)
+    // console.log('this is my data:', data, response)
   }
 
   return (

@@ -1,17 +1,17 @@
 'use client'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 import * as React from 'react'
-import RegisterForm, {
-  formSchema,
-  formType,
-} from '@/app/components/RegisterForm'
 import LoginAnnouncementCard from '@/app/components/LoginAnnouncementCard'
+import {
+  newUserSchema,
+  newUserSchemaType,
+} from '@/app/validation/newUserSchema'
+import RegisterForm from '@/app/components/RegisterForm'
 
 function Page() {
-  const form = useForm<formType>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<newUserSchemaType>({
+    resolver: zodResolver(newUserSchema),
     defaultValues: {
       email: '',
       password: '',
