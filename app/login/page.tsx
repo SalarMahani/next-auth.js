@@ -24,10 +24,12 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
-import { z } from 'zod'
 import { loginUser } from '@/app/login/actions'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 function Page() {
+  const router = useRouter()
   const form = useForm<existedUserSchemaType>({
     resolver: zodResolver(existedUserSchema),
     defaultValues: {
@@ -44,16 +46,15 @@ function Page() {
       email: data.email,
       password: data.password,
     })
-    if (response?.problem && response?.problem) {
-      form.setError('password', {
+    if (response?.error) {
+      form.setError('root', {
         message: response?.message,
       })
+      console.log('🔥')
     } else {
-      form.setError('email', {
-        message: response?.message,
-      })
+      console.log('this is my data:', data, response)
+      router.push('/home')
     }
-    // console.log('this is my data:', data, response)
   }
 
   return (
@@ -64,7 +65,7 @@ function Page() {
         <form onSubmit={form.handleSubmit(handleSubmit)}>
           <fieldset disabled={form.formState.isSubmitting}>
             <CardHeader>
-              <CardTitle className={'mb-3'}>Register</CardTitle>
+              <CardTitle className={'mb-3'}>Login</CardTitle>
               <CardDescription className={'mb-5'}>
                 Register for a new account
               </CardDescription>
@@ -126,10 +127,16 @@ function Page() {
               </FieldGroup>
             </CardContent>
             <CardFooter>
-              <Field orientation="horizontal">
+              <Field orientation="horizontal" className={'flex-col'}>
+                {!!form.formState.errors.root?.message && (
+                  <FieldError className={'mt-4 mb-0 h-0 w-full p-0'}>
+                    {form.formState.errors.root.message}
+                  </FieldError>
+                )}
                 <Button
                   className={
-                    'mt-6 w-full cursor-pointer bg-gray-800 p-5 hover:bg-gray-300 hover:text-gray-900'
+                    'mt-6 w-full cursor-pointer bg-gray-800 p-5 hover:bg-gray-300' +
+                    ' hover:text-gray-900'
                   }
                   type="submit"
                   disabled={!!(errors?.email || errors?.password)}
@@ -140,6 +147,20 @@ function Page() {
             </CardFooter>
           </fieldset>
         </form>
+        <CardFooter className={'flex-col gap-2'}>
+          <div className={'text-muted-foreground text-sm'}>
+            Don&#39;t have an account?{'  '}
+            <Link className={'underline'} href={'/register'}>
+              Register
+            </Link>
+          </div>
+          <div className={'text-muted-foreground text-sm'}>
+            Forgot password?{'  '}
+            <Link className={'underline'} href={'/password-reset'}>
+              Reset my password
+            </Link>
+          </div>
+        </CardFooter>
       </Card>
     </main>
   )

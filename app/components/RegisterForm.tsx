@@ -21,6 +21,7 @@ import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
 import { registerUser } from '@/app/register/actions'
 import { newUserSchemaType } from '@/app/validation/newUserSchema'
+import Link from 'next/link'
 
 export default function RegisterForm({
   form,
@@ -155,7 +156,8 @@ export default function RegisterForm({
             <Field orientation="horizontal">
               <Button
                 className={
-                  'mt-6 w-full cursor-pointer bg-gray-800 p-5 hover:bg-gray-300 hover:text-gray-900'
+                  'mt-6 w-full cursor-pointer bg-gray-800 p-5 hover:bg-gray-300' +
+                  ' hover:text-gray-900'
                 }
                 type="submit"
                 disabled={
@@ -171,6 +173,15 @@ export default function RegisterForm({
             </Field>
           </CardFooter>
         </fieldset>
+
+        <CardFooter className={'mt-5 flex-col'}>
+          <div className={'text-muted-foreground text-sm'}>
+            Already have an account?{'  '}
+            <Link className={'underline'} href={'/login'}>
+              Login
+            </Link>
+          </div>
+        </CardFooter>
       </form>
     </Card>
   )
