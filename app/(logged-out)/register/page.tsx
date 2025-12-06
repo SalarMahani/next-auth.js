@@ -9,7 +9,7 @@ import {
 } from '@/app/validation/newUserSchema'
 import RegisterForm from '@/app/components/RegisterForm'
 
-function Page() {
+function Register() {
   const form = useForm<newUserSchemaType>({
     resolver: zodResolver(newUserSchema),
     defaultValues: {
@@ -32,4 +32,4 @@ function Page() {
   )
 }
 
-export default Page
+export default Register

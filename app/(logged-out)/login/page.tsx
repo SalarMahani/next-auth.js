@@ -28,7 +28,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { loginUser } from '@/app/(logged-out)/login/actions'
 
-function Page() {
+function Login() {
   const router = useRouter()
   const form = useForm<existedUserSchemaType>({
     resolver: zodResolver(existedUserSchema),
@@ -166,4 +166,4 @@ function Page() {
   )
 }
 
-export default Page
+export default Login

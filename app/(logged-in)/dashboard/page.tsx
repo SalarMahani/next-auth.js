@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { auth } from '@/auth'
 
-async function Page() {
+async function dashboard() {
   const session = await auth()
   return (
     <Card className={'w-70 border-0 bg-gray-800 text-gray-300'}>
@@ -17,4 +17,4 @@ async function Page() {
   )
 }
 
-export default Page
+export default dashboard
