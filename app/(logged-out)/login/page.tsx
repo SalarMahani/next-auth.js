@@ -24,9 +24,9 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
-import { loginUser } from '@/app/login/actions'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { loginUser } from '@/app/(logged-out)/login/actions'
 
 function Page() {
   const router = useRouter()
@@ -53,7 +53,7 @@ function Page() {
       console.log('🔥')
     } else {
       console.log('this is my data:', data, response)
-      router.push('/home')
+      router.push('/dashboard')
     }
   }
 

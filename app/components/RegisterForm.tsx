@@ -19,9 +19,9 @@ import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
-import { registerUser } from '@/app/register/actions'
 import { newUserSchemaType } from '@/app/validation/newUserSchema'
 import Link from 'next/link'
+import { registerUser } from '@/app/(logged-out)/register/actions'
 
 export default function RegisterForm({
   form,

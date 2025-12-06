@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { auth } from '@/auth'
-import LogoutButton from '@/app/components/LogoutButton'
 
 export const metadata: Metadata = {
   title: 'Auth',
@@ -13,22 +11,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const session = await auth()
   return (
     <html lang="en">
-      <body className={`antialiased`}>
-        <div>
-          {session?.user?.email ? (
-            <div>
-              {session.user.email}
-              <LogoutButton />
-            </div>
-          ) : (
-            'No currently user logged in '
-          )}
-        </div>
-        {children}
-      </body>
+      <body className={`antialiased`}>{children}</body>
     </html>
   )
 }
