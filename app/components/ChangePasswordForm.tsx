@@ -64,8 +64,7 @@ function ChangePasswordForm() {
           color: '#eaecef',
         },
       })
-
-      console.log('this is the response', response)
+      // console.log('this is the response', response)
     }
   }
 

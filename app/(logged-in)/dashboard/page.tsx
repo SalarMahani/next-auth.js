@@ -5,7 +5,7 @@ import { auth } from '@/auth'
 async function dashboard() {
   const session = await auth()
   return (
-    <Card className={'w-70 border-0 bg-gray-800 text-gray-300'}>
+    <Card className={'w-fit border-0 bg-gray-800 text-gray-300'}>
       <CardHeader className={''}>
         <CardTitle className={''}>My Account</CardTitle>
       </CardHeader>

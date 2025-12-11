@@ -44,7 +44,7 @@ export async function registerUser({
       email: email,
       password: hashPassword,
     })
-    console.log('user added to database successfully.')
+    // console.log('user added to database successfully.')
   } catch (e) {
     return {
       error: true,

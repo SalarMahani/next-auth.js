@@ -1,6 +1,6 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, useForm, useWatch } from 'react-hook-form'
 import * as React from 'react'
 import {
   existedUserSchema,
@@ -50,13 +50,16 @@ function Login() {
       form.setError('root', {
         message: response?.message,
       })
-      console.log('🔥')
     } else {
-      console.log('this is my data:', data, response)
+      // console.log('this is my data:', data, response)
       router.push('/dashboard')
     }
   }
 
+  const emailValue = useWatch<existedUserSchemaType>({
+    control: form.control,
+    name: 'email',
+  })
   return (
     <main
       className={`flex min-h-screen items-center justify-center bg-gray-900 text-6xl`}
@@ -156,7 +159,10 @@ function Login() {
           </div>
           <div className={'text-muted-foreground text-sm'}>
             Forgot password?{'  '}
-            <Link className={'underline'} href={'/password-reset'}>
+            <Link
+              className={'underline'}
+              href={`/password-reset${emailValue ? `?email=${encodeURIComponent(emailValue)}` : ''}`}
+            >
               Reset my password
             </Link>
           </div>

@@ -28,3 +28,5 @@ export const passwordSchema = z
       })
     }
   })
+
+export type passwordSchemaType = z.infer<typeof passwordSchema>

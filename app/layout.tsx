@@ -13,7 +13,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`bg-gray-900 text-gray-100 antialiased`}>
         {children}
         <Toaster position={'top-center'} />
       </body>
