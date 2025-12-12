@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { logOut } from '@/app/(logged-out)/login/actions'
+import { logOut } from '@/app/(logged-out)/login/email-form/actions'
 
 function LogoutButton() {
   return (

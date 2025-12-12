@@ -4,6 +4,7 @@ import { db } from '@/db/db'
 import { users } from '@/db/usersSchema'
 import { eq } from 'drizzle-orm'
 import { compare } from 'bcryptjs'
+import Google from 'next-auth/providers/google'
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     jwt({ token, user }) {
@@ -15,6 +16,29 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session({ session, token }) {
       session.user.id = token.id as string
       return session
+    },
+
+    async signIn({ user, account, profile }) {
+      if (account?.provider === 'google') {
+        // 1. Check if a user with the same email already exists
+        const existingUser = await db
+          .select()
+          .from(users)
+          .where(eq(users.email, user.email!))
+          .limit(1)
+
+        if (existingUser.length === 0) {
+          // 2. If not, create the user
+          await db.insert(users).values({
+            email: user.email!,
+            password: null, // Google users don’t have password
+            provider: 'google',
+            providerId: account?.providerAccountId,
+          })
+        }
+      }
+
+      return true // allow login
     },
   },
   providers: [
@@ -49,5 +73,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
       },
     }),
+    Google,
   ],
 })

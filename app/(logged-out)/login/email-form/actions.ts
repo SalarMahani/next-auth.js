@@ -1,7 +1,8 @@
 'use server'
 
 import { existedUserSchema } from '@/app/validation/existedUserSchema'
-import { signIn, signOut } from '@/auth'
+import { auth, signIn, signOut } from '@/auth'
+import { use } from 'react'
 
 export async function loginUser({
   email,
@@ -34,4 +35,13 @@ export async function loginUser({
 
 export async function logOut() {
   await signOut()
+}
+
+export async function loginWithGoogle() {
+  console.log('we are in .')
+  const session = await auth()
+  if (session) {
+    throw new Error('You need to log out from your account firest')
+  }
+  await signIn('google', { redirectTo: '/dashboard' })
 }

@@ -7,7 +7,7 @@ import { redirect } from 'next/navigation'
 async function Layout({ children }: { children: ReactNode }) {
   const session = await auth()
   if (!session?.user?.id) {
-    redirect('/login')
+    redirect('/')
   }
   return (
     <div className={'flex min-h-screen flex-col'}>
@@ -21,7 +21,13 @@ async function Layout({ children }: { children: ReactNode }) {
             <Link href={'/dashboard'}>Dashboard</Link>
           </li>
           <li>
-            <Link href={'/change-password'}>Change Password</Link>
+            {session?.user?.image ? (
+              <button className="cursor-not-allowed text-gray-400" disabled>
+                Change password
+              </button>
+            ) : (
+              <Link href="/change-password">Change Password</Link>
+            )}
           </li>
         </ul>
         <div>

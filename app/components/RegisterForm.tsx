@@ -22,6 +22,9 @@ import { useState } from 'react'
 import { newUserSchemaType } from '@/app/validation/newUserSchema'
 import Link from 'next/link'
 import { registerUser } from '@/app/(logged-out)/register/actions'
+import { loginWithGoogle } from '@/app/(logged-out)/login/email-form/actions'
+import Image from 'next/image'
+import google from '@/public/google.png'
 
 export default function RegisterForm({
   form,
