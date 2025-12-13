@@ -2,7 +2,6 @@
 import * as React from 'react'
 import Image from 'next/image'
 import google from '@/public/google.png'
-import github from '@/public/github.png'
 import email from '@/public/communication.png'
 import Link from 'next/link'
 import { loginWithGoogle } from '@/app/(logged-out)/login/email-form/actions'

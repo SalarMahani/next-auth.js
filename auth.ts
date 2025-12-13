@@ -5,6 +5,7 @@ import { users } from '@/db/usersSchema'
 import { eq } from 'drizzle-orm'
 import { compare } from 'bcryptjs'
 import Google from 'next-auth/providers/google'
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     jwt({ token, user }) {
@@ -20,22 +21,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     async signIn({ user, account, profile }) {
       if (account?.provider === 'google') {
+        // 0. auth js may return null for the email, so we need to check.
+        if (!user.email) return false
         // 1. Check if a user with the same email already exists
-        const existingUser = await db
+        const [existingUser] = await db
           .select()
           .from(users)
           .where(eq(users.email, user.email!))
           .limit(1)
 
-        if (existingUser.length === 0) {
+        let dbUser = existingUser
+
+        if (dbUser) {
           // 2. If not, create the user
-          await db.insert(users).values({
-            email: user.email!,
-            password: null, // Google users don’t have password
-            provider: 'google',
-            providerId: account?.providerAccountId,
-          })
+          const [createdUser] = await db
+            .insert(users)
+            .values({
+              email: user.email!,
+              password: null, // Google users don’t have password
+              provider: 'google',
+              providerId: account?.providerAccountId,
+            })
+            .returning()
+          dbUser = createdUser
         }
+        user.id = dbUser.id.toString()
       }
 
       return true // allow login
@@ -69,7 +79,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return {
           id: user.id.toString(),
           email: user.email,
-          password: user.password,
         }
       },
     }),
