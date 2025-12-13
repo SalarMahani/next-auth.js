@@ -1,6 +1,6 @@
 # NextAuth v5  Authentication
 
-### A full-stack authentication system built with **Next.js** and **TypeScript**, focused on auth patterns.
+### An authentication system built with **Next.js** and **TypeScript**, focused on auth patterns.
 
 ##  Overview
 
