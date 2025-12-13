@@ -32,7 +32,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         let dbUser = existingUser
 
-        if (dbUser) {
+        if (!dbUser) {
           // 2. If not, create the user
           const [createdUser] = await db
             .insert(users)
