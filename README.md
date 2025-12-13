@@ -10,7 +10,7 @@ This repository demonstrates an authentication flow in a Next.js application, co
 This project uses NextAuth.js with Google authentication. In some countries, access to certain Google APIs may be restricted. If you experience issues during login, you may need to use a proxy or VPN to bypass these limitations.
 
 🔗 Live Demo:
-👉 https://cabin-booking-orpin.vercel.app/
+👉 https://next-auth-js-tau.vercel.app/
 
 📧 Forgot Password (Demo Limitation):
 In the live demo, the Forgot Password feature is limited because the project uses Resend as the email provider. Resend only allows sending emails to the account owner, so password reset emails cannot be delivered to other addresses. However, you can still use the rest of the feature.
