@@ -1,11 +1,19 @@
 # NextAuth v5  Authentication
 
-## A full-stack authentication system built with **Next.js** and **TypeScript**, focused on auth patterns.
+### A full-stack authentication system built with **Next.js** and **TypeScript**, focused on auth patterns.
 
 ##  Overview
 
 This repository demonstrates an authentication flow in a Next.js application, combining a simple UI, security practices, and a type-safe backend. The project is designed as a solid foundation for applications that require user authentication and account management.
 
+⚠️ Important Note<br/>
+This project uses NextAuth.js with Google authentication. In some countries, access to certain Google APIs may be restricted. If you experience issues during login, you may need to use a proxy or VPN to bypass these limitations.
+
+🔗 Live Demo:
+👉 https://cabin-booking-orpin.vercel.app/
+
+📧 Forgot Password (Demo Limitation):
+In the live demo, the Forgot Password feature is limited because the project uses Resend as the email provider. Resend only allows sending emails to the account owner, so password reset emails cannot be delivered to other addresses. However, you can still use the rest of the feature.
 
 ## 🔐 Core Features
 
@@ -85,21 +93,6 @@ SITE_BASE_URL=
 AUTH_GOOGLE_ID=
 AUTH_GOOGLE_SECRET=
 ```
-
-
----
-
-## 🎯 Purpose
-
-This project serves as a reference implementation for building authentication-heavy applications with Next.js. It can be used as a starting point for production apps or as a sandbox for experimenting with advanced auth and security features.
-
----
-
-## 🧩 Possible Enhancements
-
-* Role-based access control (RBAC)
-* Session management dashboard
-* Rate limiting and advanced security policies
 
 ---
 
