@@ -53,7 +53,6 @@ In the live demo, the Forgot Password feature is limited because the project use
 ### Frontend
 
 * **Next.js (App Router)**
-* **React**
 * **TypeScript**
 * **Tailwind CSS**
 * **shadcn/ui**
