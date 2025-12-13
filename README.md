@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextAuth v5  Authentication
 
-## Getting Started
+## A full-stack authentication system built with **Next.js** and **TypeScript**, focused on auth patterns.
 
-First, run the development server:
+##  Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This repository demonstrates an authentication flow in a Next.js application, combining a simple UI, security practices, and a type-safe backend. The project is designed as a solid foundation for applications that require user authentication and account management.
+
+
+## 🔐 Core Features
+
+### Authentication
+
+* Email and password signup
+* Secure credentials-based login using NextAuth v5
+* Session management with the Next.js App Router
+
+### Security
+
+* Password reset via email
+* Route protection to restrict access to authenticated users
+
+### Forms & Validation
+
+* Type-safe form handling with React Hook Form
+* Schema-based validation using Zod
+* Shared validation logic between client and server
+
+### Database
+
+* PostgreSQL hosted on Neon
+* Type-safe database access with Drizzle ORM
+
+### Email
+
+* Transactional emails for password reset and account actions
+* Email delivery powered by Resend
+
+### OAuth providers
+* use Googel as an provider for register and login the user
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **Next.js (App Router)**
+* **React**
+* **TypeScript**
+* **Tailwind CSS**
+* **shadcn/ui**
+* **React Hook Form**
+* **Zod**
+
+### Backend & Auth
+
+* **NextAuth v5 (Auth.js)**
+* **Credentials Provider**
+* **PostgreSQL (Neon)**
+* **Drizzle ORM**
+
+---
+
+## 📁 Project Structure (High Level)
+
+```
+app/            # Next.js App Router
+components/     # Reusable shad cn UI components
+lib/            # utilities
+db/             # Drizzle schema & migrations
+public/        # project pictures
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env` file with the following configuration:
 
-## Learn More
+```
+DATABASE_URL=
+AUTH_SECRET=
+RESEND_API_KE=
+SITE_BASE_URL=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎯 Purpose
 
-## Deploy on Vercel
+This project serves as a reference implementation for building authentication-heavy applications with Next.js. It can be used as a starting point for production apps or as a sandbox for experimenting with advanced auth and security features.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧩 Possible Enhancements
+
+* Role-based access control (RBAC)
+* Session management dashboard
+* Rate limiting and advanced security policies
+
+---
+
+## 📄 License
+
+free for all
