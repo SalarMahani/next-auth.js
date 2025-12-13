@@ -63,7 +63,6 @@ In the live demo, the Forgot Password feature is limited because the project use
 ### Backend & Auth
 
 * **NextAuth v5 (Auth.js)**
-* **Credentials Provider**
 * **PostgreSQL (Neon)**
 * **Drizzle ORM**
 
