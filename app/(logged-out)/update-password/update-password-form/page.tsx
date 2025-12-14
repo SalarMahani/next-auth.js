@@ -1,11 +1,5 @@
 'use client'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { CardContent, CardFooter } from '@/components/ui/card'
 import {
   Field,
   FieldError,
@@ -30,6 +24,8 @@ import Link from 'next/link'
 function UpdatePasswordForm({ token }: { token: string }) {
   const UpdatePasswordForm = useForm<passwordSchemaType>({
     resolver: zodResolver(passwordSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       password: '',
       confirmPassword: '',
