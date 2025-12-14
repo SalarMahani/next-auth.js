@@ -12,6 +12,8 @@ import RegisterForm from '@/app/components/RegisterForm'
 function Register() {
   const form = useForm<newUserSchemaType>({
     resolver: zodResolver(newUserSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
       password: '',

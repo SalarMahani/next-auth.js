@@ -32,6 +32,8 @@ function PasswordReset() {
   const searchInput = searchParams.get('email')
   const passwordResetForm = useForm<passwordResetSchemaType>({
     resolver: zodResolver(passwordResetSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: searchInput ? decodeURIComponent(searchInput) : '',
     },

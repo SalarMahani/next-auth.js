@@ -32,6 +32,8 @@ function EmailLoginForm() {
   const router = useRouter()
   const form = useForm<existedUserSchemaType>({
     resolver: zodResolver(existedUserSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       email: '',
       password: '',
